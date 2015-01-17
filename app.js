@@ -1,3 +1,6 @@
+var blueInfo;
+var greenInfo;
+
 var app = (function()
 {
 	// Application object.
@@ -10,6 +13,8 @@ var app = (function()
 	var updateTimer = null;
 
 	var beaconDistance;
+	// blueInfo = 'Katie (USA)' + '<br />';
+	// greenInfo = 'Eva (USA)' + '<br />';
 
 	app.initialize = function()
 	{
@@ -19,6 +24,9 @@ var app = (function()
 
 	function onDeviceReady()
 	{
+
+		blueInfo = 'Katie (USA)' + '<br />';
+		greenInfo = 'Eva (USA)' + '<br />';
 
 		// Specify a shortcut for the location manager holding the iBeacon functions.
 		window.estimote = EstimoteBeacons;
@@ -86,6 +94,19 @@ var app = (function()
 		return beaconDistance;
 	}
 
+	function updateBlueTrashInfo(name, country) { 
+		blueInfo = name + '('+ country + ')' + '<br />';
+		window.location.href = "screen2.html";	
+	}
+
+	function updateGreenTrashInfo(text) { 
+		//greenInfo = name + '('+ country + ')' + '<br />';
+		//window.location.href = "screen2.html";
+		//greenInfo = text;
+		//displayBeaconList();	
+		alert("update!!");
+	}
+
 	function displayBeaconList()
 	{
 		// // Clear beacon list.
@@ -117,8 +138,8 @@ var app = (function()
 					// Create tag to display beacon data.
 					var elementA = $(
 						'<li>'
-						+	'Daphne <br />' 
-						+	'Katie (USA) <br />'
+						+	'Daphne <br />'
+						+	blueInfo 
 						+	proximityHTML(beacon)
 						+	distanceHTML(beacon)
 						//+	beaconDistance
@@ -129,10 +150,11 @@ var app = (function()
 
 				if(beacon.major == 60417) { 						//DISPLAY THE GREEN BEACON
 					// Create tag to display beacon data.
+					greenInfo = passedName + passedCountry;
 					var elementB = $(
 						'<li>'
 						+	'Scooby <br />' 
-						+	'Eva (POL) <br />'
+						+	greenInfo
 						+	proximityHTML(beacon)
 						+	distanceHTML(beacon)
 						//+	beaconDistance

@@ -14,8 +14,20 @@
 	</style>
 
 	<script>
+	var passedName = 'empty';
+	var passedCountry='empty';
 	// Redirect console.log to Evothings Workbench.
 	if (window.hyper && window.hyper.log) { console.log = hyper.log }
+
+		function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+	passedName = getParameterByName("trashgoer") + '<br />';
+	passedCountry = getParameterByName("country") + '<br />';
 	</script>
 
 	<script src="cordova.js"></script>

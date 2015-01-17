@@ -52,9 +52,9 @@ blank box -->
 <p>&nbsp;</p>
 <form id="myForm" style="font-size: 20px">
 	Add YOUR name to Scooby's list of trashgoers!
-  <p>Name: <input type="text" style="font-size: 12px" id="new trashgoer" value=""></p>
+  <p>Name: <input type="text" style="font-size: 12px" id="trashgoer" value=""></p>
 
-  <p>Country of Origin: <input type="text" style="font-size: 12px" id="new country of origin" value=""></p>
+  <p>Country of Origin: <input type="text" style="font-size: 12px" id="country" value=""></p>
 </form>
 <p>&nbsp;</p>
 
@@ -84,7 +84,19 @@ function sendData()
 
 <p></p>
 	<!--CHANGE HREF-->
-	<center> <button a href "#about.html" onClick="alert('hey');">Click Me</a></button> </center>
+	<!-- <center> <button a href "screen2.html" onClick= "updateGreenTrashInfo('hello, 'hi');" >Click Me</a></button> </center> --> 
+	<p id="demo" onclick="myFunction()">Click me.</p>
+
+	<script>
+	function myFunction() {
+		//greenInfo = "WORK";
+    	document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+    	//greenInfo = "testtest";
+    	window.location.href='screen2.html?trashgoer=' + $("#trashgoer").val()+'&country='+  $("#country").val();
+    	displayBeaconList();
+    	//greenInfo = name + '('+ country + ')' + '<br />';
+	}
+	</script>
 
 	<center> <button onclick="window.location.href='index.html'"> No, thanks! </button> </center>
 
