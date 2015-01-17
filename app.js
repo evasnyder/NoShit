@@ -69,19 +69,26 @@ var app = (function()
 		$.each(beacons, function(key, beacon)
 		{
 			// Only show beacons that are updated during the last 60 seconds.
-			if (beacon.timeStamp + 3000 > timeNow)
+			if (beacon.timeStamp + 2000 > timeNow)
 			{
 				// Create tag to display beacon data.
 				var element = $(
 					'<li>'
-					+	'Major: ' + beacon.major + '<br />'
-					+	'Minor: ' + beacon.minor + '<br />'
+					+	'Trashcan Name: ' + beacon.major + '<br />'
 					+	proximityHTML(beacon)
 					+	distanceHTML(beacon)
+					+	'Previous Trash-goer: ' + beacon.minor + '<br />'
+
 					+	rssiHTML(beacon)
 					+ '</li>'
 				);
 
+			    //<button onclick="window.location.href='screen2.html'">Click me</button>
+ 				var btn = document.createElement("BUTTON");        // Create a <button> element
+				var t = document.createTextNode("CLICK ME");       // Create a text node
+				btn.appendChild(t);                                // Append the text to <button>
+				document.body.appendChild(btn);                    // Append <button> to <body>
+				
 				$('#found-beacons').append(element);
 			}
 		});
@@ -94,9 +101,9 @@ var app = (function()
 
 		var proximityNames = [
 			'Unknown',
-			'YO ITS HERE',
-			'Near',
-			'Far'];
+			'YOU\'RE SO CLOSE!',
+			'Keep walking, almost found one!',
+			'Keep moving, you\'ll find one!'];
 
 		return 'Proximity: ' + proximityNames[proximity] + '<br />';
 	}
@@ -133,6 +140,10 @@ var app = (function()
 		color = Math.max(0, color);
 		color = Math.min(5, color);
 		var rgb = beaconColors[color];
+
+		/*FYI, RSSI is the strength of the beacon's signal as seen on the receiving 
+		device, e.g. a smartphone. In general, the greater the distance between 
+		the device and the beacon, the lesser the strength of the received signal.*/ 
 
 		// Map the RSSI value to a width in percent for the indicator.
 		var rssiWidth = 1; // Used when RSSI is zero or greater.
