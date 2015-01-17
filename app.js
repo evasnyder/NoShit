@@ -117,7 +117,7 @@ var app = (function()
 					// Create tag to display beacon data.
 					var elementA = $(
 						'<li>'
-						+	'Shaggy <br />' 
+						+	'Daphne <br />' 
 						+	'Katie (USA) <br />'
 						+	proximityHTML(beacon)
 						+	distanceHTML(beacon)
@@ -145,13 +145,13 @@ var app = (function()
 				{
 					//testingtestingtestingtesting
 					//alert("hey");
-					window.location.href = "index.html";			//line of code that brings you to another window
+					window.location.href = "blueTrashcan.html";			//line of code that brings you to another window
 				}));
 
 				$(elementB).append(makeButton(function() 			//ADDED A BUTTON TO THE GREEN BEACON
 				{ 
 					//alert('hi');
-					window.location.href = "about.html";			//line of code that brings you to another window
+					window.location.href = "greenTrashcan.html";			//line of code that brings you to another window
 				}));
 
 				$('#found-beacons').append(elementA);				//APPENEDED BOTH OF THOSE BUTTONS TO THEIR
