@@ -74,24 +74,63 @@ var app = (function()
 				// Create tag to display beacon data.
 				var element = $(
 					'<li>'
-					+	'Trashcan Name: ' + beacon.major + '<br />'
+					+	trashcanName(beacon)
+					+	trashgoerName(beacon)
 					+	proximityHTML(beacon)
 					+	distanceHTML(beacon)
-					+	'Previous Trash-goer: ' + beacon.minor + '<br />'
-
 					+	rssiHTML(beacon)
 					+ '</li>'
 				);
-
-			    //<button onclick="window.location.href='screen2.html'">Click me</button>
- 				var btn = document.createElement("BUTTON");        // Create a <button> element
-				var t = document.createTextNode("CLICK ME");       // Create a text node
-				btn.appendChild(t);                                // Append the text to <button>
-				document.body.appendChild(btn);                    // Append <button> to <body>
 				
+				//add button
+				$(element).append(makeButton(function ()
+				{
+					alert("hey");
+				}));
+
 				$('#found-beacons').append(element);
 			}
 		});
+	}
+
+	/* 
+Make a button!! But like, a SUPER cool button. 
+*/
+ 	function makeButton(func) 
+ 	{
+		var b =  $('<button />', {'class': 'superclose', text: 'Click Me!!'});
+		b.click(func);
+		return b;
+	}  
+
+	function trashcanName(beacon)
+	{
+		var random = Math.floor(Math.random()*4);
+
+		var tNames = [
+		'Scooby',
+		'Shaggy',
+		'Fred',
+		'Daphne',
+		'Velma'];
+
+		var str = 'Trashcan Name: ';
+		return str.bold() + tNames[random] + '<br />';
+	}
+
+	function trashgoerName(beacon)
+	{
+		var random = Math.floor(Math.random()*4);
+
+		var gNames = [
+		'Sam (DEU)',
+		'Jesse (FRA)',
+		'Eva (POL)',
+		'Katie (USA)',
+		'Terrance (UK)'];
+
+		var str = 'Trashgoer Name: ';
+		return str.bold() + gNames[random] + '<br />';
 	}
 
 	function proximityHTML(beacon)
@@ -102,8 +141,8 @@ var app = (function()
 		var proximityNames = [
 			'Unknown',
 			'YOU\'RE SO CLOSE!',
-			'Keep walking, almost found one!',
-			'Keep moving, you\'ll find one!'];
+			'Almost!',
+			'Not close enough yet!'];
 
 		return 'Proximity: ' + proximityNames[proximity] + '<br />';
 	}
@@ -115,8 +154,8 @@ var app = (function()
 
 		var distance =
 			(meters > 1) ?
-				meters.toFixed(3) + ' m' :
-				(meters * 100).toFixed(3) + ' cm';
+				(meters * 3.28).toFixed(3) + ' ft' :
+				(meters * 100 * 0.39).toFixed(3) + ' in';
 
 		if (meters < 0) { distance = '?'; }
 
