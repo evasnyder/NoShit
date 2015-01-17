@@ -9,25 +9,37 @@ var app = (function()
 	// Timer that displays list of beacons.
 	var updateTimer = null;
 
+	var beaconDistance;
+
 	app.initialize = function()
 	{
 		document.addEventListener('deviceready', onDeviceReady, false);
+		//displayBeaconList();
 	};
 
 	function onDeviceReady()
 	{
+
 		// Specify a shortcut for the location manager holding the iBeacon functions.
 		window.estimote = EstimoteBeacons;
 
 		// Start tracking beacons!
 		startScan();
 
+		//displayBeaconList();
+
 		// Display refresh timer.
 		updateTimer = setInterval(displayBeaconList, 500);
+		//updateTimer = setInterval(updateDistance, 500);
+
 	}
+	// var displayed = {};
+	// var displayCount = 0;
+	// var didDisplay = false;
 
 	function startScan()
 	{
+		//displayBeaconList();
 		function onBeaconsRanged(beaconInfo)
 		{
 			//console.log('onBeaconsRanged: ' + JSON.stringify(beaconInfo))
@@ -38,7 +50,18 @@ var app = (function()
 				beacon.timeStamp = Date.now();
 				var key = beacon.uuid + ':' + beacon.major + ':' + beacon.minor;
 				beacons[key] = beacon;
-			}
+
+				//displayBeaconList();
+			// 	if (!displayed[key]){
+			// 		displayCount ++;
+			// 		displayed[key] = true;
+			// 	}
+			// }
+			// if (!didDisplay && displayCount == 2){
+			// 	displayBeaconList();
+			// 	didDisplay = true;
+			// }
+			}	
 		}
 
 		function onError(errorMessage)
@@ -58,37 +81,81 @@ var app = (function()
 			onError);
 	}
 
+	function updateDistance() { 
+		beaconDistance = distanceHTML(beacon);
+		return beaconDistance;
+	}
+
 	function displayBeaconList()
 	{
-		// Clear beacon list.
+		// // Clear beacon list.
 		$('#found-beacons').empty();
 
-		var timeNow = Date.now();
+		 var timeNow = Date.now();
 
-		// Update beacon list.
-		$.each(beacons, function(key, beacon)
-		{
-			// Only show beacons that are updated during the last 60 seconds.
-			if (beacon.timeStamp + 2000 > timeNow)
-			{
-				// Create tag to display beacon data.
-				var element = $(
-					'<li>'
-					+	trashcanName(beacon)
-					+	trashgoerName(beacon)
-					+	proximityHTML(beacon)
-					+	distanceHTML(beacon)
-					+	rssiHTML(beacon)
-					+ '</li>'
-				);
+		// //beaconDistance = distanceHTML(beacon);
+
+		// // Update beacon list.
+		 $.each(beacons, function(key, beacon)
+		 {
+		// 	// Only show beacons that are updated during the last 60 seconds.
+		 	if (beacon.timeStamp + 20000 > timeNow)
+		 	{
+		// 		// Create tag to display beacon data.
+		// 		var element = $(
+		// 			'<li>'
+		// 			+	trashcanName(beacon)
+		// 			+	trashgoerName(beacon)
+		// 			+	proximityHTML(beacon)
+		// 			+	distanceHTML(beacon)
+		// 			//+	beaconDistance
+		// 			+	rssiHTML(beacon)
+		// 			+ '</li>'
+		// 		);
 				
-				//add button
-				$(element).append(makeButton(function ()
+				if(beacon.major == 58219) { 						//DISPLAY THE BLUE BEACON
+					// Create tag to display beacon data.
+					var elementA = $(
+						'<li>'
+						+	'Shaggy <br />' 
+						+	'Katie (USA) <br />'
+						+	proximityHTML(beacon)
+						+	distanceHTML(beacon)
+						//+	beaconDistance
+						+	rssiHTML(beacon)
+						+ '</li>'
+					);
+				}
+
+				if(beacon.major == 60417) { 						//DISPLAY THE GREEN BEACON
+					// Create tag to display beacon data.
+					var elementB = $(
+						'<li>'
+						+	'Scooby <br />' 
+						+	'Eva (POL) <br />'
+						+	proximityHTML(beacon)
+						+	distanceHTML(beacon)
+						//+	beaconDistance
+						+	rssiHTML(beacon)
+						+ '</li>'
+					);
+				}
+
+				$(elementA).append(makeButton(function ()			//ADDED A BUTTON TO THE BLUE BEACON
 				{
-					alert("hey");
+					//testingtestingtestingtesting
+					//alert("hey");
+					window.location.href = "index.html";			//line of code that brings you to another window
 				}));
 
-				$('#found-beacons').append(element);
+				$(elementB).append(makeButton(function() 			//ADDED A BUTTON TO THE GREEN BEACON
+				{ 
+					//alert('hi');
+					window.location.href = "about.html";			//line of code that brings you to another window
+				}));
+
+				$('#found-beacons').append(elementA);				//APPENEDED BOTH OF THOSE BUTTONS TO THEIR
+				$('#found-beacons').append(elementB);				//RIGHTFUL OWNERS
 			}
 		});
 	}
@@ -99,7 +166,8 @@ Make a button!! But like, a SUPER cool button.
  	function makeButton(func) 
  	{
 		var b =  $('<button />', {'class': 'superclose', text: 'Click Me!!'});
-		b.click(func);
+		//b.click(func);
+		b.click(func)
 		return b;
 	}  
 
