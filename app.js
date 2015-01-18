@@ -150,7 +150,7 @@ var app = (function()
 
 				if(beacon.major == 60417) { 						//DISPLAY THE GREEN BEACON
 					// Create tag to display beacon data.
-					greenInfo = passedName + passedCountry;
+					//greenInfo = passedName + passedCountry;
 					var elementB = $(
 						'<li>'
 						+	'Scooby <br />' 
