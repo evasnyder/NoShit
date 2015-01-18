@@ -141,7 +141,7 @@ var app = (function()
 				
 				if(beacon.major == 58219) { 						//DISPLAY THE BLUE BEACON
 					// Create tag to display beacon data.
-					blueInfo = passedNameBLUE + ' ('+passedCountryBLUE+') <br />';
+					//blueInfo = passedNameBLUE + ' ('+passedCountryBLUE+') <br />';
 					savedBlue = blueInfo;
 					var elementA = $(
 						'<li>'
@@ -219,35 +219,35 @@ Make a button!! But like, a SUPER cool button.
 		return b;
 	}  
 
-	function trashcanName(beacon)
-	{
-		var random = Math.floor(Math.random()*4);
+	// function trashcanName(beacon)
+	// {
+	// 	var random = Math.floor(Math.random()*4);
 
-		var tNames = [
-		'Scooby',
-		'Shaggy',
-		'Fred',
-		'Daphne',
-		'Velma'];
+	// 	var tNames = [
+	// 	'Scooby',
+	// 	'Shaggy',
+	// 	'Fred',
+	// 	'Daphne',
+	// 	'Velma'];
 
-		var str = 'Trashcan Name: ';
-		return str.bold() + tNames[random] + '<br />';
-	}
+	// 	var str = 'Trashcan Name: ';
+	// 	return str.bold() + tNames[random] + '<br />';
+	// }
 
-	function trashgoerName(beacon)
-	{
-		var random = Math.floor(Math.random()*4);
+	// function trashgoerName(beacon)
+	// {
+	// 	var random = Math.floor(Math.random()*4);
 
-		var gNames = [
-		'Sam (DEU)',
-		'Jesse (FRA)',
-		'Eva (POL)',
-		'Katie (USA)',
-		'Terrance (UK)'];
+	// 	var gNames = [
+	// 	'Sam (DEU)',
+	// 	'Jesse (FRA)',
+	// 	'Eva (POL)',
+	// 	'Katie (USA)',
+	// 	'Terrance (UK)'];
 
-		var str = 'Trashgoer Name: ';
-		return str.bold() + gNames[random] + '<br />';
-	}
+	// 	var str = 'Trashgoer Name: ';
+	// 	return str.bold() + gNames[random] + '<br />';
+	// }
 
 	function proximityHTML(beacon)
 	{
