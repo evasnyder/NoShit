@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no
+		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+	<title>No Shit!</title>
+
+	<style>
+		@import 'ui/css/evothings-app.css';
+	</style>
+
+	<script>
+	// Redirect console.log to Evothings Workbench.
+	if (window.hyper && window.hyper.log) { console.log = hyper.log }
+	</script>
+
+	<script src="cordova.js"></script>
+	<script src="libs/jquery/jquery.js"></script>
+	<script src="libs/evothings/evothings.js"></script>
+	<script src="app.js"></script>
+
+</head>
+
+<body>
+
+	<header>
+		<button class="back" onclick="history.back()">
+			<img src="ui/images/arrow-left.svg" />
+		</button>
+
+		<!-- <img class="logotype" src="ui/images/cloud.jpg" alt="Evothings" /> -->
+
+		<!--<button class="menu" onclick=""><img src="ui/images/menu.svg" /></button>-->
+	</header>
+	<h2 style = "font-size: 30px"> <center> Scooby Spotlight </center> </h2>
+	<!--<p> Trashcan Name: --- </p>-->
+		<p style="font-weight:bold"> Previous Trashgoer Name: --- </p>
+		<p style="font-weight:bold"> Previous Trashgoer's Country of Origin: --- </p>
+
+	<p>Scooby loves doing origami in his spare time, so if you have any paper to throw away, he would love to take it from you! His favorite drink is Coke, but he always drinks it in a cup with three ice cubes.  His favorite season is winter!
+	
+
+	</p>
+
+
+<!-- Previous: gorjwigorjw
+blank box
+
+Previous country: gjwogijw
+blank box -->
+
+<p>&nbsp;</p>
+<form id="myForm" style="font-size: 20px">
+	Add YOUR name to Scooby's list of trashgoers!
+  <p>Name: <input type="text" style="font-size: 12px" id="trashgoerG" value=""></p>
+
+  <p>Country of Origin: <input type="text" style="font-size: 12px" id="countryG" value=""></p>
+</form>
+<p>&nbsp;</p>
+
+
+<!-- <p>Click the "Try it" button to display the id of the form the text field belongs to.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myText").form.id;
+    document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+ -->
+
+<p></p>
+	<!--CHANGE HREF-->
+	<!-- <center> <button a href "screen2.html" onClick= "updateGreenTrashInfo('hello, 'hi');" >Click Me</a></button> </center> --> 
+	<center> <button onclick="myFunction()"> Yes, update! </button> </center>
+
+	<!--onclick="myFunction()">UPDATE.-->
+
+	<script>
+	function myFunction() {
+
+//<p id="demo" </p>
+		
+		//greenInfo = "WORK";
+		//first = false;
+    	//document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+    	//greenInfo = "testtest";
+    	window.location.href='screen2.html?green=' + $("#trashgoerG").val()+'&greenCountry='+  $("#countryG").val();
+    	displayBeaconList();
+    	//greenInfo = name + '('+ country + ')' + '<br />';
+	}
+	</script>
+
+	<center> <button onclick="window.location.href='index.html'"> No, thanks! </button> </center>
+
+	<!-- <ul id="found-beacons" class="dynamic"></ul> -->
+
+	<center> <p> &copy; PennApps 2015 KEVA Enterprise</p> </center>
+
+
+
+</body>
+
+</html>
