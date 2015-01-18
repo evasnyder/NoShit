@@ -14,20 +14,24 @@
 	</style>
 
 	<script>
-	var passedName = 'empty';
-	var passedCountry='empty';
+	var passedNameGREEN = 'Eva';
+	var passedCountryGREEN='POL';
+	var passedNameBLUE = 'Katie';
+	var passedCountryBLUE='USA';
 	// Redirect console.log to Evothings Workbench.
 	if (window.hyper && window.hyper.log) { console.log = hyper.log }
 
-		function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+	function getParameterByName(name) {
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(location.search);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
 
-	passedName = getParameterByName("trashgoer") + '<br />';
-	passedCountry = getParameterByName("country") + '<br />';
+	passedNameGREEN = getParameterByName("green");
+	passedCountryGREEN = getParameterByName("greenCountry");
+	passedNameBLUE = getParameterByName("blue");
+	passedCountryBLUE = getParameterByName("blueCountry");
 	</script>
 
 	<script src="cordova.js"></script>
@@ -44,13 +48,17 @@
 			<img src="ui/images/arrow-left.svg" />
 		</button>
 
-		 <img class="logotype" src="ui/images/gamefacesKEVA.jpg" alt="No Shit." /> 
+		 <!--<img class="logotype" src="ui/images/gamefacesKEVA.jpg" alt="No Shit." /> -->
 
 		<!--<button class="menu" onclick=""><img src="ui/images/menu.svg" /></button>-->
 	</header>
 
 	<h2 style = "font-size: 30px"> Nearby Trashcans</h2>
-	<p>Choose your favorite by clicking on it below! Don't forget to read about your trashcan's previous trash-goers and the trashcan's backstory. Kudos to you for not littering and keeping our oceans clean!</p>
+	<p>Thanks for not littering and joining the revolution to keep our oceans clean! Select your trashcan of choice below to read and add to the trashcan's backstory. </p>
+	<div id=url> (window.location.href) </div>
+	<script>
+	$('#url').text(location.href);
+	</script>
 
 	<ul id="found-beacons" class="dynamic"></ul> 
 

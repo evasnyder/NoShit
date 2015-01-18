@@ -1,5 +1,8 @@
 var blueInfo;
 var greenInfo;
+//var first = false;
+var savedGreen;
+var savedBlue;
 
 var app = (function()
 {
@@ -11,6 +14,7 @@ var app = (function()
 
 	// Timer that displays list of beacons.
 	var updateTimer = null;
+
 
 	var beaconDistance;
 	// blueInfo = 'Katie (USA)' + '<br />';
@@ -27,6 +31,7 @@ var app = (function()
 
 		blueInfo = 'Katie (USA)' + '<br />';
 		greenInfo = 'Eva (USA)' + '<br />';
+		first = true;
 
 		// Specify a shortcut for the location manager holding the iBeacon functions.
 		window.estimote = EstimoteBeacons;
@@ -94,7 +99,7 @@ var app = (function()
 		return beaconDistance;
 	}
 
-	function updateBlueTrashInfo(name, country) { 
+/*	function updateBlueTrashInfo(name, country) { 
 		blueInfo = name + '('+ country + ')' + '<br />';
 		window.location.href = "screen2.html";	
 	}
@@ -105,7 +110,7 @@ var app = (function()
 		//greenInfo = text;
 		//displayBeaconList();	
 		alert("update!!");
-	}
+	}*/
 
 	function displayBeaconList()
 	{
@@ -136,6 +141,8 @@ var app = (function()
 				
 				if(beacon.major == 58219) { 						//DISPLAY THE BLUE BEACON
 					// Create tag to display beacon data.
+					blueInfo = passedNameBLUE + ' ('+passedCountryBLUE+') <br />';
+					savedBlue = blueInfo;
 					var elementA = $(
 						'<li>'
 						+	'Daphne <br />'
@@ -150,8 +157,10 @@ var app = (function()
 
 				if(beacon.major == 60417) { 						//DISPLAY THE GREEN BEACON
 					// Create tag to display beacon data.
-					//greenInfo = passedName + passedCountry;
-					var elementB = $(
+					//alert(greenInfo);
+/*					if(first)
+					{
+						var elementB = $(
 						'<li>'
 						+	'Scooby <br />' 
 						+	greenInfo
@@ -161,6 +170,23 @@ var app = (function()
 						+	rssiHTML(beacon)
 						+ '</li>'
 					);
+					}
+					else
+					{*/
+						greenInfo = passedNameGREEN + ' ('+passedCountryGREEN+') <br />';
+						savedGreen = greenInfo;
+						var elementB = $(
+						'<li>'
+						+	'Scooby <br />' 
+						+	greenInfo
+						+	proximityHTML(beacon)
+						+	distanceHTML(beacon)
+						//+	beaconDistance
+						+	rssiHTML(beacon)
+						+ '</li>'
+					);
+					//}
+
 				}
 
 				$(elementA).append(makeButton(function ()			//ADDED A BUTTON TO THE BLUE BEACON
