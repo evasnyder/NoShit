@@ -28,28 +28,37 @@
 <body>
 
 	<header>
+		<img class="logotype" src="ui/images/header4.jpg" alt="Evothings" /> 
 		<button class="back" onclick="history.back()">
 			<img src="ui/images/arrow-left.svg" />
 		</button>
 
-		<img class="logotype" src="ui/images/header4.jpg" alt="Evothings" /> 
+
 	</header> 
 
 	<h2 style="font-size: 40px"> <center> View Scooby's Friends </center> </h2> 
+	<p style= "font-size : 5px"> <center> Check out the map to see Scooby's visitors. </center> </p>
 
-	<!-- Image of the world here --> 
-	<div>
-    <ul class="columns" data-columns="2">
-        <li>A</li>
-        <li>B</li>
-        <li>C</li>
-        <li>D</li>
-        <li>E</li>
-        <li>F</li>
-        <li>G</li>
-    </ul>
-</div>
-
+	 <style>
+      #map-canvas {
+        width: 275px;
+        height: 280px;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map-canvas');
+        var mapOptions = {
+          center: new google.maps.LatLng(44.5403, -78.5463),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>	
+    <div id="map-canvas"></div>
 </body>
 
 </html>
